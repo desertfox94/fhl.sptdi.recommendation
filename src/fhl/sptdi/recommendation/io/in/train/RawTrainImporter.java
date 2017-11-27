@@ -6,6 +6,10 @@ import fhl.sptdi.recommendation.model.Train;
 
 public class RawTrainImporter extends CsvImporter<Train> {
 
+	public RawTrainImporter(int i) {
+		super(i);
+	}
+
 	@Override
 	protected Train importEntity(CsvLine line) {
 		TrainImpl train = new TrainImpl();

@@ -10,7 +10,6 @@ import java.util.Map;
 
 public class CSVImport {
 
-	private static int row;
 
 	public static <R extends CsvEntity> Map<String, R> importFromFile(File file, CsvEntityImporter<R> importer) throws IOException {
 		importFromFile(file, (CsvImporter<R>) importer);
@@ -19,13 +18,13 @@ public class CSVImport {
 
 	public static <R> List<R> importFromFile(File file, CsvImporter<R> importer) throws IOException {
 		List<R> result = new LinkedList<>();
-		row = 0;
+		int row = 0;
 		BufferedReader reader = new BufferedReader(new FileReader(file));
-		reader.lines().forEach(s -> {
-			if (row++ != 0) {
-				result.add(importer.apply(new CsvLine(s, row)));
-			}
-		});
+		String line;
+		reader.readLine();
+		while ((line = reader.readLine()) != null && importer.continueImport(row++)) {
+			result.add(importer.apply(new CsvLine(line, row)));
+		}
 		reader.close();
 		return result;
 	}

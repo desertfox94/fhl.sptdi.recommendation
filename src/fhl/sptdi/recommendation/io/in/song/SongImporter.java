@@ -10,10 +10,19 @@ import fhl.sptdi.recommendation.model.Song;
 
 public class SongImporter extends CsvEntityImporter<Song> {
 
+	private Set<String> songsPlayedByMembers;
+	
+	public SongImporter(Set<String> members) {
+		this.songsPlayedByMembers = members;
+	}
+
 	@Override
 	public Song importEntity(CsvLine line) {
 		SongImpl song = new SongImpl();
 		song.id = line.getValue(0);
+		if (!songsPlayedByMembers.contains(song.getId())) {
+			return null;
+		}
 		song.length = Long.parseLong(line.getValue(1));
 		song.genres = parseGenres(line.getValue(2));
 		song.artistName = line.getValue(3);
