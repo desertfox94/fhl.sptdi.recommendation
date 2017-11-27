@@ -13,12 +13,10 @@ import fhl.sptdi.recommendation.model.Train;
 public class Application {
 
 	public static void main(String[] args) throws IOException {
-
-		String root = new File("").getAbsolutePath() + "/data";
-
-		File trainCsv = new File(root + "/train.csv");
-		File memberCsv = new File(root + "/members.csv");
-		File songCsv = new File(root + "/songs.csv");
+		String root = new File("").getAbsolutePath() + File.separator + "data";
+		File trainCsv = new File(root + File.separator + "train.csv");
+		File memberCsv = new File(root + File.separator + "members.csv");
+		File songCsv = new File(root + File.separator + "songs.csv");
 		TrainImportModel importModel = new TrainImportModel(trainCsv, memberCsv, songCsv);
 		List<Train> trains = new CopyOnWriteArrayList<>(TrainFactory.createFromFile(importModel));
 		for (Train train : trains) {
@@ -26,7 +24,7 @@ public class Application {
 				trains.remove(train);
 			}
 		}
-		System.out.println(trains);
+		trains.forEach(System.out::println);
 	}
 
 }

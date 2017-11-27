@@ -67,7 +67,7 @@ public class TrainImpl implements Train {
 
 	@Override
 	public String toString() {
-		return "Train[Member(" + member == null ? "null" : member.toString() + "), Song(" + song == null ? "null" : song.toString() + ")]";
+		return "Train[Member(" + (member == null ? "null" : member.toString()) + "), Song(" + (song == null ? "null" : song.toString()) + ")]";
 	}
 
 }
