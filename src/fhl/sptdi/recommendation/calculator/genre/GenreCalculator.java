@@ -6,7 +6,11 @@ import java.util.Set;
 import fhl.sptdi.recommendation.calculator.Calculator;
 import fhl.sptdi.recommendation.model.PlayedSong;
 
-public class GenreCalculator implements Calculator {
+public class GenreCalculator extends Calculator {
+
+	public GenreCalculator() {
+		super(2);
+	}
 
 	@Override
 	public double calculate(PlayedSong playedSong, List<PlayedSong> songs) {
@@ -18,11 +22,6 @@ public class GenreCalculator implements Calculator {
 			result += genreMetrics.songsOfGenre(genre) / size;
 		}
 		return result;
-	}
-
-	@Override
-	public int getGewichtung() {
-		return 2;
 	}
 
 }

@@ -35,7 +35,6 @@ public class GenreCalculatorTest {
 		Song song = new SongImpl();
 		Arrays.asList(genres).forEach(genre -> song.addGenre(genre));
 		playedSong.setSong(song);
-		// asdasdas
 		return playedSong;
 	}
 

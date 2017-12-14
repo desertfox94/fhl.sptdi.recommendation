@@ -24,7 +24,7 @@ public class Recommender {
 		int result = 0;
 		int weightSum = 0;
 		for (Calculator calculator : calculators) {
-			int weight = calculator.getGewichtung();
+			int weight = calculator.getWeighting();
 			weightSum += weight;
 			result += calculator.willListenAgain(playedSong, songs) * weight;
 		}

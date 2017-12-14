@@ -60,4 +60,9 @@ public class SongImpl implements Song {
 		genres.add(genre);
 	}
 
+	@Override
+	public void setComposer(String composer) {
+		this.composer = composer;
+	}
+
 }

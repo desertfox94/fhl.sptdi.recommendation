@@ -30,4 +30,6 @@ public interface Song extends CsvEntity {
 
 	void addGenre(String genre);
 
+	void setComposer(String composer);
+
 }

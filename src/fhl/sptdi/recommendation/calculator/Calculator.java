@@ -4,14 +4,22 @@ import java.util.List;
 
 import fhl.sptdi.recommendation.model.PlayedSong;
 
-public interface Calculator {
+public abstract class Calculator {
 
-	double calculate(PlayedSong playedSong, List<PlayedSong> songs);
+	private int weighting;
 
-	default int willListenAgain(PlayedSong playedSong, List<PlayedSong> songs) {
+	public Calculator(int weighting) {
+		this.weighting = weighting;
+	}
+
+	public abstract double calculate(PlayedSong playedSong, List<PlayedSong> songs);
+
+	public int willListenAgain(PlayedSong playedSong, List<PlayedSong> songs) {
 		return calculate(playedSong, songs) >= 0.5 ? 1 : 0;
 	}
 
-	int getGewichtung();
+	public final int getWeighting() {
+		return weighting;
+	}
 
 }

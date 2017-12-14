@@ -12,7 +12,7 @@ public class DummyCalc implements Calculator {
 	}
 
 	@Override
-	public int getGewichtung() {
+	public int getWeighting() {
 		return 3;
 	}
 
