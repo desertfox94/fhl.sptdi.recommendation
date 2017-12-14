@@ -13,45 +13,49 @@ import static org.junit.Assert.assertEquals;
 
 public class RecommenderTest {
 
-    private PlayedSong playedSong;
+    private Song song;
     private List<PlayedSong> songs;
 
     @Test
     public void testCalculate_WillListenAgain() {
         setUp(true);
-        assertEquals(1, new Recommender().willListenAgain(playedSong, songs));
+        assertEquals(1, new Recommender().willListenAgain(song, songs));
     }
 
     @Test
     public void testCalculate_WontListenAgain() {
         setUp(false);
-        assertEquals(0, new Recommender().willListenAgain(playedSong, songs));
+        assertEquals(0, new Recommender().willListenAgain(song, songs));
     }
 
     private void setUp(boolean willListenAgain) {
         if (willListenAgain) {
-            playedSong = createSong("Test", "1", "2", "3");
+            song = createSong(Arrays.asList("Test"), Arrays.asList("1", "2", "3"));
             songs = Arrays.asList(
-                    createSong("Test2", "1", "4"),
-                    createSong("Test", "1", "2", "3"),
-                    createSong("Test", "2", "3", "5"));
+                    createPlayedSong(Arrays.asList("Test2"), Arrays.asList("1", "4")),
+                    createPlayedSong(Arrays.asList("Test"), Arrays.asList("1", "2", "3")),
+                    createPlayedSong(Arrays.asList("Test"), Arrays.asList("2", "3", "5")));
         }
         else {
-            playedSong = createSong("Test", "1", "2", "3");
+            song = createSong(Arrays.asList("Test"), Arrays.asList("1", "2", "3"));
             songs = Arrays.asList(
-                    createSong("Test2", "1", "4"),
-                    createSong("Test1", "4"),
-                    createSong("Test", "2", "3", "5"));
+                    createPlayedSong(Arrays.asList("Test2"), Arrays.asList("1", "4")),
+                    createPlayedSong(Arrays.asList("Test1"), Arrays.asList("4")),
+                    createPlayedSong(Arrays.asList("Test"), Arrays.asList("2", "3", "5")));
         }
     }
 
-    private PlayedSong createSong(String composer, String... genres) {
-        Song song = new SongImpl();
-        song.setComposer(composer);
-        Arrays.asList(genres).forEach(genre -> song.addGenre(genre));
+    private PlayedSong createPlayedSong(List<String> composers, List<String> genres) {
         PlayedSong playedSong = new PlayedSongImpl();
-        playedSong.setSong(song);
+        playedSong.setSong(createSong(composers, genres));
         return playedSong;
+    }
+
+    private Song createSong(List<String> composers, List<String> genres) {
+        Song song = new SongImpl();
+        composers.forEach(composer -> song.addComposer(composer));
+        genres.forEach(genre -> song.addGenre(genre));
+        return song;
     }
 
 }

@@ -15,37 +15,41 @@ import static org.junit.Assert.assertEquals;
 
 public class ComposerCalculatorTest {
 
-    private PlayedSong playedSong;
-    private List<PlayedSong> songs;
+    private Song song;
+    private List<PlayedSong> playedSongs;
 
     @Before
     public void setUp() {
-        songs = Arrays.asList(
-                createSong("Test2"),
-                createSong("Test"),
-                createSong("Test"),
-                createSong("Test3"),
-                createSong("Test4"));
+        playedSongs = Arrays.asList(
+                createPlayedSong("Test2", "Test"),
+                createPlayedSong("Test", "Test3"),
+                createPlayedSong("Test"),
+                createPlayedSong("Test3", "Test", "Test4"),
+                createPlayedSong("Test4"));
     }
 
-    private PlayedSong createSong(String composer) {
-        Song song = new SongImpl();
-        song.setComposer(composer);
+    private PlayedSong createPlayedSong(String... composers) {
         PlayedSong playedSong = new PlayedSongImpl();
-        playedSong.setSong(song);
+        playedSong.setSong(createSong(composers));
         return playedSong;
     }
 
-    @Test
-    public void testCalculate_TwoOutOfFive() {
-        playedSong = createSong("Test");
-        assertEquals(0.4, new ComposerCalculator().calculate(playedSong, songs), 0);
+    private Song createSong(String... composers) {
+        Song song = new SongImpl();
+        Arrays.asList(composers).forEach(composer -> song.addComposer(composer));
+        return song;
     }
 
     @Test
-    public void testCalculate_ZeroOutOfFive() {
-        playedSong = createSong("Test5");
-        assertEquals(0.0, new ComposerCalculator().calculate(playedSong, songs), 0);
+    public void testCalculate() {
+        song = createSong("Test");
+        assertEquals(0.8, new ComposerCalculator().calculate(song, playedSongs), 0);
+    }
+
+    @Test
+    public void testCalculate_NoMatches() {
+        song = createSong("Test5");
+        assertEquals(0.0, new ComposerCalculator().calculate(song, playedSongs), 0);
     }
 
 }
