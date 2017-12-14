@@ -23,7 +23,7 @@ public class GenreMetrics {
 	}
 
 	public double songsOfGenre(String genre) {
-		return genresPlayed.get(genre) / songCount;
+		return genresPlayed.get(genre) != null ? genresPlayed.get(genre) / songCount : 0;
 	}
 
 	private int countGenres() {

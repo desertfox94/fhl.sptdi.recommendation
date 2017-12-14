@@ -21,8 +21,6 @@ public class GenreCalculatorTest {
 
 	@Before
 	public void setUp() {
-		song = createSong("1", "2", "3");
-
 		playedSongs = new ArrayList<>();
 		playedSongs.add(createPlayedSong("1", "4"));
 		playedSongs.add(createPlayedSong("1", "2", "3"));
@@ -43,7 +41,14 @@ public class GenreCalculatorTest {
 
 	@Test
 	public void testCalculate() {
+		song = createSong("1", "2", "3");
 		Assert.assertEquals((2.0 / 3.0), new GenreCalculator().calculate(song, playedSongs), 0);
+	}
+
+	@Test
+	public void testCalculate_NoMatches() {
+		song = createSong("6");
+		Assert.assertEquals(0, new GenreCalculator().calculate(song, playedSongs), 0);
 	}
 
 }
