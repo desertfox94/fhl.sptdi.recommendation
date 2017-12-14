@@ -18,7 +18,7 @@ public class RawPlayedSongImporter extends CsvImporter<PlayedSong> {
 		train.sourceSystemTab = line.getValue(2);
 		train.sourceScreenName = line.getValue(3);
 		train.sourceType = line.getValue(4);
-		train.target = line.getValue(5);
+		train.playedAgain = Boolean.parseBoolean(line.getValue(5));
 		return train;
 	}
 

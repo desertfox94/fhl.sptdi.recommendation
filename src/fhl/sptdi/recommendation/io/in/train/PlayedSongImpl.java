@@ -1,8 +1,8 @@
 package fhl.sptdi.recommendation.io.in.train;
 
 import fhl.sptdi.recommendation.model.Member;
-import fhl.sptdi.recommendation.model.Song;
 import fhl.sptdi.recommendation.model.PlayedSong;
+import fhl.sptdi.recommendation.model.Song;
 
 public class PlayedSongImpl implements PlayedSong {
 
@@ -13,7 +13,7 @@ public class PlayedSongImpl implements PlayedSong {
 	String sourceSystemTab;
 	String sourceScreenName;
 	String sourceType;
-	String target;
+	boolean playedAgain;
 
 	@Override
 	public String getMemberId() {
@@ -41,8 +41,8 @@ public class PlayedSongImpl implements PlayedSong {
 	}
 
 	@Override
-	public String getTarget() {
-		return target;
+	public boolean getPlayedAgain() {
+		return playedAgain;
 	}
 
 	@Override

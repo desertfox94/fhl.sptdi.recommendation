@@ -38,7 +38,7 @@ public interface PlayedSong {
 	 * 
 	 * @return
 	 */
-	String getTarget();
+	boolean getPlayedAgain();
 
 	Member getMember();
 
