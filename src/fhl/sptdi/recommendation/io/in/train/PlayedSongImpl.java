@@ -2,9 +2,9 @@ package fhl.sptdi.recommendation.io.in.train;
 
 import fhl.sptdi.recommendation.model.Member;
 import fhl.sptdi.recommendation.model.Song;
-import fhl.sptdi.recommendation.model.Train;
+import fhl.sptdi.recommendation.model.PlayedSong;
 
-public class TrainImpl implements Train {
+public class PlayedSongImpl implements PlayedSong {
 
 	String memberId;
 	Member member;

@@ -1,4 +1,3 @@
-
 package fhl.sptdi.recommendation.model;
 
 import java.util.Set;
@@ -28,5 +27,7 @@ public interface Song extends CsvEntity {
 	String getLanguage();
 
 	String getComposer();
+
+	void addGenre(String genre);
 
 }

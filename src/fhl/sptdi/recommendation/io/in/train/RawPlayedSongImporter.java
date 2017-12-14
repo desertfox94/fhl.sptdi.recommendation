@@ -2,17 +2,17 @@ package fhl.sptdi.recommendation.io.in.train;
 
 import fhl.sptdi.recommendation.io.in.CsvImporter;
 import fhl.sptdi.recommendation.io.in.CsvLine;
-import fhl.sptdi.recommendation.model.Train;
+import fhl.sptdi.recommendation.model.PlayedSong;
 
-public class RawTrainImporter extends CsvImporter<Train> {
+public class RawPlayedSongImporter extends CsvImporter<PlayedSong> {
 
-	public RawTrainImporter(int i) {
+	public RawPlayedSongImporter(int i) {
 		super(i);
 	}
 
 	@Override
-	protected Train importEntity(CsvLine line) {
-		TrainImpl train = new TrainImpl();
+	protected PlayedSong importEntity(CsvLine line) {
+		PlayedSongImpl train = new PlayedSongImpl();
 		train.memberId = line.getValue(0);
 		train.songId = line.getValue(1);
 		train.sourceSystemTab = line.getValue(2);

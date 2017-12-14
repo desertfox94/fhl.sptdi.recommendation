@@ -1,6 +1,6 @@
 package fhl.sptdi.recommendation.model;
 
-public interface Train {
+public interface PlayedSong {
 
 	String getSongId();
 

@@ -1,5 +1,6 @@
 package fhl.sptdi.recommendation.io.in.song;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import fhl.sptdi.recommendation.model.Song;
@@ -8,14 +9,11 @@ public class SongImpl implements Song {
 
 	String id;
 	long length;
-	Set<String> genres;
+	Set<String> genres = new HashSet<>();
 	String artistName;
 	String lyrics;
 	String language;
 	String composer;
-
-	SongImpl() {
-	}
 
 	@Override
 	public String getId() {
@@ -55,6 +53,11 @@ public class SongImpl implements Song {
 	@Override
 	public String toString() {
 		return getId() + ", " + getArtistName();
+	}
+
+	@Override
+	public void addGenre(String genre) {
+		genres.add(genre);
 	}
 
 }

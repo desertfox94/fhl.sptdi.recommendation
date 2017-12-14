@@ -2,7 +2,7 @@ package fhl.sptdi.recommendation.io.in.train;
 
 import java.io.File;
 
-public class TrainImportModel {
+public class PlayedSongImportModel {
 
 	private static final int DEBUG_LIMIT = 1000;
 	public final File trains;
@@ -11,14 +11,14 @@ public class TrainImportModel {
 	
 	public final int limit;
 
-	public TrainImportModel(File trains, File members, File songs, int limit) {
+	public PlayedSongImportModel(File trains, File members, File songs, int limit) {
 		this.trains = trains;
 		this.members = members;
 		this.songs = songs;
 		this.limit = limit;
 	}
 	
-	public TrainImportModel(File trains, File members, File songs) {
+	public PlayedSongImportModel(File trains, File members, File songs) {
 		this(trains, members, songs, DEBUG_LIMIT);
 	}
 
