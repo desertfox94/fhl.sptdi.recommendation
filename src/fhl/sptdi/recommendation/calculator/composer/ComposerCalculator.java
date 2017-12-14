@@ -8,10 +8,6 @@ import java.util.List;
 
 public class ComposerCalculator extends Calculator {
 
-    public ComposerCalculator() {
-        super(1);
-    }
-
     @Override
     public double calculate(PlayedSong playedSong, List<PlayedSong> songs) {
         String composer = playedSong.getSong().getComposer();

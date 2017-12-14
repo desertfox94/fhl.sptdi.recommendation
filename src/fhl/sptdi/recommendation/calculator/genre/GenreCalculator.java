@@ -8,10 +8,6 @@ import fhl.sptdi.recommendation.model.PlayedSong;
 
 public class GenreCalculator extends Calculator {
 
-	public GenreCalculator() {
-		super(2);
-	}
-
 	@Override
 	public double calculate(PlayedSong playedSong, List<PlayedSong> songs) {
 		Set<String> genres = playedSong.getSong().getGenres();
