@@ -46,7 +46,7 @@ public class SongImpl implements Song {
 	}
 
 	@Override
-	public Set<String> getComposer() {
+	public Set<String> getComposers() {
 		return composers;
 	}
 

@@ -6,6 +6,7 @@ import java.util.List;
 import fhl.sptdi.recommendation.calculator.composer.ComposerCalculator;
 import fhl.sptdi.recommendation.calculator.genre.GenreCalculator;
 import fhl.sptdi.recommendation.model.PlayedSong;
+import fhl.sptdi.recommendation.model.Song;
 
 public class Recommender {
 
@@ -21,13 +22,13 @@ public class Recommender {
 		calculators.add(new ComposerCalculator());
 	}
 
-	public int willListenAgain(PlayedSong playedSong, List<PlayedSong> songs) {
+	public int willListenAgain(Song song, List<PlayedSong> playedSongs) {
 		int result = 0;
 		int weightSum = 0;
 		for (Calculator calculator : calculators) {
 			int weight = calculator.getWeighting();
 			weightSum += weight;
-			result += calculator.willListenAgain(playedSong, songs) * weight;
+			result += calculator.willListenAgain(song, playedSongs) * weight;
 		}
 		return (double) result / weightSum >= 0.5 ? 1 : 0;
 	}

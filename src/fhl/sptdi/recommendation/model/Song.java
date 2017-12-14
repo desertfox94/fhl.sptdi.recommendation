@@ -26,7 +26,7 @@ public interface Song extends CsvEntity {
 
 	String getLanguage();
 
-	Set<String> getComposer();
+	Set<String> getComposers();
 
 	void addGenre(String genre);
 
