@@ -1,4 +1,4 @@
-package fhl.sptdi.recommendation;
+package fhl.sptdi.recommendation.calculator;
 
 import fhl.sptdi.recommendation.calculator.composer.ComposerCalculator;
 import fhl.sptdi.recommendation.io.in.song.SongImpl;

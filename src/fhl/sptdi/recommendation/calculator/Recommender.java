@@ -3,6 +3,7 @@ package fhl.sptdi.recommendation.calculator;
 import java.util.ArrayList;
 import java.util.List;
 
+import fhl.sptdi.recommendation.calculator.composer.ComposerCalculator;
 import fhl.sptdi.recommendation.calculator.genre.GenreCalculator;
 import fhl.sptdi.recommendation.model.PlayedSong;
 
@@ -17,7 +18,7 @@ public class Recommender {
 	private void init() {
 		calculators = new ArrayList<Calculator>();
 		calculators.add(new GenreCalculator());
-		calculators.add(new DummyCalc());
+		calculators.add(new ComposerCalculator());
 	}
 
 	public int willListenAgain(PlayedSong playedSong, List<PlayedSong> songs) {

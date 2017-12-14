@@ -1,4 +1,4 @@
-package fhl.sptdi.recommendation;
+package fhl.sptdi.recommendation.calculator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,8 +41,6 @@ public class GenreCalculatorTest {
 	@Test
 	public void testCalculate() {
 		Assert.assertEquals((2.0 / 3.0), new GenreCalculator().calculate(playedSong, songs), 0);
-		Recommender recommender = new Recommender();
-		System.out.println(recommender.willListenAgain(playedSong, songs));
 	}
 
 }
