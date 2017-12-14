@@ -10,10 +10,10 @@ public class SongImpl implements Song {
 	String id;
 	long length;
 	Set<String> genres = new HashSet<>();
-	String artistName;
+	Set<String> artists = new HashSet<>();
 	String lyrics;
 	String language;
-	String composer;
+	Set<String> composers = new HashSet<>();
 
 	@Override
 	public String getId() {
@@ -31,8 +31,8 @@ public class SongImpl implements Song {
 	}
 
 	@Override
-	public String getArtistName() {
-		return artistName;
+	public Set<String> getArtists() {
+		return artists;
 	}
 
 	@Override
@@ -46,13 +46,13 @@ public class SongImpl implements Song {
 	}
 
 	@Override
-	public String getComposer() {
-		return composer;
+	public Set<String> getComposer() {
+		return composers;
 	}
 
 	@Override
 	public String toString() {
-		return getId() + ", " + getArtistName();
+		return getId() + ", " + artists.toString();
 	}
 
 	@Override
@@ -60,9 +60,13 @@ public class SongImpl implements Song {
 		genres.add(genre);
 	}
 
+	public void setComposer(Set<String> composers) {
+		this.composers = composers;
+	}
+
 	@Override
-	public void setComposer(String composer) {
-		this.composer = composer;
+	public void addComposer(String composer) {
+		composers.add(composer);
 	}
 
 }

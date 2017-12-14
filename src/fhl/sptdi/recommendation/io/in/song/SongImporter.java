@@ -11,7 +11,7 @@ import fhl.sptdi.recommendation.model.Song;
 public class SongImporter extends CsvEntityImporter<Song> {
 
 	private Set<String> songsPlayedByMembers;
-	
+
 	public SongImporter(Set<String> members) {
 		this.songsPlayedByMembers = members;
 	}
@@ -24,22 +24,22 @@ public class SongImporter extends CsvEntityImporter<Song> {
 			return null;
 		}
 		song.length = Long.parseLong(line.getValue(1));
-		song.genres = parseGenres(line.getValue(2));
-		song.artistName = line.getValue(3);
-		song.composer = line.getValue(4);
+		song.genres = parseSet(line.getValue(2));
+		song.artists = parseSet(line.getValue(3));
+		song.composers = parseSet(line.getValue(4));
 		song.lyrics = line.getValue(5);
 		song.language = line.getValue(6);
 		return song;
 	}
 
-	private Set<String> parseGenres(String genre) {
-		if (genre.isEmpty()) {
+	private Set<String> parseSet(String entries) {
+		if (entries.isEmpty()) {
 			return Collections.emptySet();
 		}
-		String[] genres = genre.split("\\|");
-		HashSet<String> result = new HashSet<>(genre.length());
-		for (String g : genres) {
-			result.add(g.trim());
+		String[] set = entries.split("\\|");
+		HashSet<String> result = new HashSet<>(entries.length());
+		for (String s : set) {
+			result.add(s.trim());
 		}
 		return result;
 	}

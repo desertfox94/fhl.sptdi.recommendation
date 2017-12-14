@@ -20,16 +20,16 @@ public interface Song extends CsvEntity {
 	 */
 	Set<String> getGenres();
 
-	String getArtistName();
+	Set<String> getArtists();
 
 	String getLyrics();
 
 	String getLanguage();
 
-	String getComposer();
+	Set<String> getComposer();
 
 	void addGenre(String genre);
 
-	void setComposer(String composer);
+	void addComposer(String composer);
 
 }
