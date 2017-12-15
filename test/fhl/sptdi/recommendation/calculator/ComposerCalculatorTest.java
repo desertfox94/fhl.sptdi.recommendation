@@ -1,5 +1,6 @@
 package fhl.sptdi.recommendation.calculator;
 
+import fhl.sptdi.recommendation.SongBuilder;
 import fhl.sptdi.recommendation.calculator.composer.ComposerCalculator;
 import fhl.sptdi.recommendation.io.in.song.SongImpl;
 import fhl.sptdi.recommendation.io.in.train.PlayedSongImpl;
@@ -30,25 +31,19 @@ public class ComposerCalculatorTest {
 
     private PlayedSong createPlayedSong(String... composers) {
         PlayedSong playedSong = new PlayedSongImpl();
-        playedSong.setSong(createSong(composers));
+        playedSong.setSong(new SongBuilder().withComposers(composers).build());
         return playedSong;
-    }
-
-    private Song createSong(String... composers) {
-        Song song = new SongImpl();
-        Arrays.asList(composers).forEach(composer -> song.addComposer(composer));
-        return song;
     }
 
     @Test
     public void testCalculate() {
-        song = createSong("Test");
+        song = new SongBuilder().withComposers("Test").build();
         assertEquals(0.8, new ComposerCalculator().calculate(song, playedSongs), 0);
     }
 
     @Test
     public void testCalculate_NoMatches() {
-        song = createSong("Test5");
+        song = new SongBuilder().withComposers("Test5").build();
         assertEquals(0.0, new ComposerCalculator().calculate(song, playedSongs), 0);
     }
 

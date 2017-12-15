@@ -1,5 +1,6 @@
 package fhl.sptdi.recommendation.calculator;
 
+import fhl.sptdi.recommendation.SongBuilder;
 import fhl.sptdi.recommendation.io.in.song.SongImpl;
 import fhl.sptdi.recommendation.io.in.train.PlayedSongImpl;
 import fhl.sptdi.recommendation.model.PlayedSong;
@@ -29,15 +30,14 @@ public class RecommenderTest {
     }
 
     private void setUp(boolean willListenAgain) {
+        song = new SongBuilder().withComposers("Test").withGenres("1", "2", "3").build();
         if (willListenAgain) {
-            song = createSong(Arrays.asList("Test"), Arrays.asList("1", "2", "3"));
             songs = Arrays.asList(
                     createPlayedSong(Arrays.asList("Test2"), Arrays.asList("1", "4")),
                     createPlayedSong(Arrays.asList("Test"), Arrays.asList("1", "2", "3")),
                     createPlayedSong(Arrays.asList("Test"), Arrays.asList("2", "3", "5")));
         }
         else {
-            song = createSong(Arrays.asList("Test"), Arrays.asList("1", "2", "3"));
             songs = Arrays.asList(
                     createPlayedSong(Arrays.asList("Test2"), Arrays.asList("1", "4")),
                     createPlayedSong(Arrays.asList("Test1"), Arrays.asList("4")),
@@ -47,15 +47,8 @@ public class RecommenderTest {
 
     private PlayedSong createPlayedSong(List<String> composers, List<String> genres) {
         PlayedSong playedSong = new PlayedSongImpl();
-        playedSong.setSong(createSong(composers, genres));
+        playedSong.setSong(new SongBuilder().withComposers(composers).withGenres(genres).build());
         return playedSong;
-    }
-
-    private Song createSong(List<String> composers, List<String> genres) {
-        Song song = new SongImpl();
-        composers.forEach(composer -> song.addComposer(composer));
-        genres.forEach(genre -> song.addGenre(genre));
-        return song;
     }
 
 }
