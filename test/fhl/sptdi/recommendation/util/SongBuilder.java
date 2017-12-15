@@ -1,4 +1,4 @@
-package fhl.sptdi.recommendation;
+package fhl.sptdi.recommendation.util;
 
 import fhl.sptdi.recommendation.io.in.song.SongImpl;
 import fhl.sptdi.recommendation.model.Song;

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import fhl.sptdi.recommendation.SongBuilder;
+import fhl.sptdi.recommendation.util.PlayedSongBuilder;
+import fhl.sptdi.recommendation.util.SongBuilder;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import fhl.sptdi.recommendation.calculator.genre.GenreCalculator;
-import fhl.sptdi.recommendation.io.in.song.SongImpl;
 import fhl.sptdi.recommendation.io.in.train.PlayedSongImpl;
 import fhl.sptdi.recommendation.model.PlayedSong;
 import fhl.sptdi.recommendation.model.Song;
@@ -18,20 +18,15 @@ import fhl.sptdi.recommendation.model.Song;
 public class GenreCalculatorTest {
 
 	private Song song;
-	private List<PlayedSong> playedSongs;
+	private List<PlayedSong> playedSongs = new ArrayList<>();
 
 	@Before
 	public void setUp() {
-		playedSongs = new ArrayList<>();
-		playedSongs.add(createPlayedSong("1", "4"));
-		playedSongs.add(createPlayedSong("1", "2", "3"));
-		playedSongs.add(createPlayedSong("2", "3", "5"));
-	}
-
-	private PlayedSong createPlayedSong(String... genres) {
-		PlayedSong playedSong = new PlayedSongImpl();
-		playedSong.setSong(new SongBuilder().withGenres(genres).build());
-		return playedSong;
+		List<Song> songs = Arrays.asList(
+				new SongBuilder().withGenres("1", "4").build(),
+				new SongBuilder().withGenres("1", "2", "3").build(),
+				new SongBuilder().withGenres("2", "3", "5").build());
+		songs.forEach(song -> playedSongs.add(new PlayedSongBuilder().withSong(song).build()));
 	}
 
 	@Test

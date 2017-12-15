@@ -1,14 +1,15 @@
 package fhl.sptdi.recommendation.calculator;
 
-import fhl.sptdi.recommendation.SongBuilder;
+import fhl.sptdi.recommendation.util.PlayedSongBuilder;
+import fhl.sptdi.recommendation.util.SongBuilder;
 import fhl.sptdi.recommendation.calculator.composer.ComposerCalculator;
-import fhl.sptdi.recommendation.io.in.song.SongImpl;
 import fhl.sptdi.recommendation.io.in.train.PlayedSongImpl;
 import fhl.sptdi.recommendation.model.PlayedSong;
 import fhl.sptdi.recommendation.model.Song;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,22 +18,16 @@ import static org.junit.Assert.assertEquals;
 public class ComposerCalculatorTest {
 
     private Song song;
-    private List<PlayedSong> playedSongs;
+    private List<PlayedSong> playedSongs = new ArrayList<>();
 
     @Before
     public void setUp() {
-        playedSongs = Arrays.asList(
-                createPlayedSong("Test2", "Test"),
-                createPlayedSong("Test", "Test3"),
-                createPlayedSong("Test"),
-                createPlayedSong("Test3", "Test", "Test4"),
-                createPlayedSong("Test4"));
-    }
-
-    private PlayedSong createPlayedSong(String... composers) {
-        PlayedSong playedSong = new PlayedSongImpl();
-        playedSong.setSong(new SongBuilder().withComposers(composers).build());
-        return playedSong;
+        List<Song> songs = Arrays.asList(new SongBuilder().withComposers("Test2", "Test").build(),
+                new SongBuilder().withComposers("Test", "Test3").build(),
+                new SongBuilder().withComposers("Test").build(),
+                new SongBuilder().withComposers("Test3", "Test", "Test4").build(),
+                new SongBuilder().withComposers("Test4").build());
+        songs.forEach(song -> playedSongs.add(new PlayedSongBuilder().withSong(song).build()));
     }
 
     @Test
